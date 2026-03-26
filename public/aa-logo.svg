@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 175" width="200" height="175">
+  <!-- AA Anadolu Ajansı Logo - matching original -->
+  <g fill="none" stroke="#0066b3">
+    <!-- Left leg of left A -->
+    <line x1="38" y1="118" x2="72" y2="28" stroke-width="7.5" stroke-linecap="round"/>
+    <!-- Right leg of left A / Left leg of right A (shared center going to peak then down) -->
+    <path d="M98,118 L72,28 Q100,2 128,28 L102,118" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Right leg of right A -->
+    <line x1="128" y1="28" x2="162" y2="118" stroke-width="7.5" stroke-linecap="round"/>
+    <!-- Left A horizontal bar -->
+    <line x1="52" y1="85" x2="90" y2="85" stroke-width="5.5" stroke-linecap="round"/>
+    <!-- Right A horizontal bar -->
+    <line x1="110" y1="85" x2="148" y2="85" stroke-width="5.5" stroke-linecap="round"/>
+  </g>
+  <!-- ANADOLU AJANSI text -->
+  <text x="100" y="152" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="16.5" fill="#0066b3" letter-spacing="2.5">ANADOLU AJANSI</text>
+</svg>

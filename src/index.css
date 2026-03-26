@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1a5276;
+  --color-primary-light: #2980b9;
+  --color-aa-blue: #0066b3;
+  --color-aa-dark: #003d6b;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  background-color: #f0f4f8;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+@media print {
+  .no-print { display: none !important; }
+}
+
+/* Preview form styling */
+.preview-form {
+  font-family: 'Times New Roman', Times, serif;
+  background: white;
+  color: #000;
+  line-height: 1.4;
+}
+
+.checkbox-box {
+  width: 13px;
+  height: 13px;
+  border: 1.5px solid #444;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checkbox-box.checked::after {
+  content: '✓';
+  font-size: 10px;
+  font-weight: bold;
+  color: #000;
+}
+
+.approval-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.approval-table td {
+  border: 1.5px solid #888;
+  padding: 6px 10px;
+  vertical-align: top;
+}
+
+.field-dots {
+  border-bottom: 1px dotted #999;
+  flex: 1;
+  min-width: 40px;
+}
