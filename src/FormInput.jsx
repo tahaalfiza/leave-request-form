@@ -37,6 +37,36 @@ export default function FormInput({ data, setData, t }) {
 
   const update = (field, value) => setData(prev => ({ ...prev, [field]: value }));
 
+  // Count working days (Mon-Fri) between two dates, inclusive
+  const countWorkingDays = (startDate, endDate) => {
+    let count = 0;
+    const d = new Date(startDate);
+    while (d <= endDate) {
+      const day = d.getDay();
+      if (day !== 0 && day !== 6) count++; // Skip Sat(6) and Sun(0)
+      d.setDate(d.getDate() + 1);
+    }
+    return count;
+  };
+
+  // Get next working day after a given date
+  const nextWorkingDay = (date) => {
+    const d = new Date(date);
+    d.setDate(d.getDate() + 1);
+    while (d.getDay() === 0 || d.getDay() === 6) {
+      d.setDate(d.getDate() + 1);
+    }
+    return d;
+  };
+
+  // Format date as YYYY-MM-DD in local timezone (avoids UTC shift from toISOString)
+  const toLocalDateStr = (d) => {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  };
+
   // Auto-calculate total leave duration and return date
   useEffect(() => {
     if (data.leaveStartDate && data.leaveEndDate) {
@@ -44,23 +74,13 @@ export default function FormInput({ data, setData, t }) {
       const end = new Date(data.leaveEndDate + 'T00:00:00');
 
       if (end >= start) {
-        // Calculate calendar days (inclusive)
-        const diffTime = end.getTime() - start.getTime();
-        const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24)) + 1;
-        const totalStr = `${diffDays} ${t.days}`;
-
-        // Return date = day after end date
-        const returnDate = new Date(end);
-        returnDate.setDate(returnDate.getDate() + 1);
-        // Skip weekends for return date
-        while (returnDate.getDay() === 0 || returnDate.getDay() === 6) {
-          returnDate.setDate(returnDate.getDate() + 1);
-        }
-        const returnStr = returnDate.toISOString().split('T')[0];
+        const workDays = countWorkingDays(start, end);
+        const returnDate = nextWorkingDay(end);
+        const returnStr = toLocalDateStr(returnDate);
 
         setData(prev => ({
           ...prev,
-          totalLeaveDuration: totalStr,
+          totalLeaveDuration: `${workDays} ${t.days}`,
           returnDate: returnStr,
         }));
       }
@@ -75,8 +95,8 @@ export default function FormInput({ data, setData, t }) {
         const start = new Date(data.leaveStartDate + 'T00:00:00');
         const end = new Date(data.leaveEndDate + 'T00:00:00');
         if (end >= start) {
-          const diffDays = Math.round((end - start) / (1000 * 60 * 60 * 24)) + 1;
-          const remaining = balance - diffDays;
+          const workDays = countWorkingDays(start, end);
+          const remaining = balance - workDays;
           setData(prev => ({ ...prev, remainingBalance: `${remaining} ${t.days}` }));
         }
       }
