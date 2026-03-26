@@ -140,6 +140,8 @@ export default function FormInput({ data, setData, t }) {
         <Field label={t.fullName} value={data.fullName || ''} onChange={v => update('fullName', v)} />
         <Field label={t.registrationNo} value={data.registrationNo || ''} onChange={v => update('registrationNo', v)} />
         <Field label={t.department} value={data.department || ''} onChange={v => update('department', v)} />
+        <Field label={t.email} value={data.email || ''} onChange={v => update('email', v)} type="email" placeholder="name@example.com" />
+        <Field label={t.mobile} value={data.mobile || ''} onChange={v => update('mobile', v)} type="tel" placeholder="+90 5XX XXX XX XX" />
       </Section>
 
       {/* Leave Details */}
