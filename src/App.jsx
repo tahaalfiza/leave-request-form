@@ -236,9 +236,7 @@ function App() {
       <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50 no-print">
         <div className="max-w-[1600px] mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-aa-blue rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">AA</span>
-            </div>
+            <img src="/aa-logo.svg" alt="Anadolu Ajansı" className="h-9 w-auto" />
             <h1 className="text-lg font-bold text-gray-800 hidden sm:block">{t.appTitle}</h1>
           </div>
           <div className="flex items-center gap-2">
